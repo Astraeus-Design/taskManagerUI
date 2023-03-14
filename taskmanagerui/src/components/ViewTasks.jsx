@@ -11,7 +11,7 @@ import Stack from 'react-bootstrap/Stack';
 
 function ViewTasks(props) {
   const [tasklist, setTasksArray] = useState([]);
-  const [refreshCards, setRefresh] = useState(false);
+  const [refreshCards, setRefresh] = useState(true);
   const [validData, setValidData] = useState(false);
   let countVal;
 
@@ -33,9 +33,9 @@ function ViewTasks(props) {
 
         //console.log(digiData.description);
         //const digiData = imageData.data.results;
-        setValidData(true);
+        setRefresh(false);
         setTasksArray(tasksData.data);
-
+        setValidData(true);
         // response.status(200).send(digiData);
       } catch (error) {
         console.log(error);
@@ -46,8 +46,8 @@ function ViewTasks(props) {
       //setCallApi(false);
     }
 
-    getTasks();
-  }, []);
+    if (refreshCards) getTasks();
+  });
 
   // useEffect for post to keep independent from apiproduct acquisition
   /*
@@ -98,8 +98,10 @@ function ViewTasks(props) {
         console.log('calling async api');
         const tempObj = tasklist[i];
         const idStr = tempObj._id;
+        console.log(idStr);
         const deleteUrl = 'http://127.0.0.1:3010/task/' + idStr;
-        const tasksData = await axios.get(deleteUrl);
+        console.log(deleteUrl);
+        const tasksData = await axios.delete(deleteUrl);
 
         setRefresh(true);
 
