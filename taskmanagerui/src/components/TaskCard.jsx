@@ -107,9 +107,9 @@ function TaskCard(props) {
         <Card.Body id="second">
           <Card.Title>Assigned Attributes</Card.Title>
           <Card.Text>
-            <h4>Task due: {taskVals.dueDate}</h4>
+            Task due: {taskVals.dueDate}
             <br></br>
-            <h4>Priority Level: {taskVals.priorityLevel}</h4>
+            Priority Level: {taskVals.priorityLevel}
           </Card.Text>
           {/* <Button variant="primary">Go somewhere</Button> */}
         </Card.Body>
@@ -118,9 +118,7 @@ function TaskCard(props) {
       {selected === '#third' && (
         <Card.Body id="third">
           <Card.Title>Task Owner</Card.Title>
-          <Card.Text>
-            <h4>Task owner: {taskVals.assignedUser}</h4>
-          </Card.Text>
+          <Card.Text>Task owner: {taskVals.assignedUser}</Card.Text>
           {/* <Button variant="primary">Go somewhere</Button> */}
         </Card.Body>
       )}
