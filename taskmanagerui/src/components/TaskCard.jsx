@@ -3,6 +3,14 @@ import Card from 'react-bootstrap/Card';
 import Nav from 'react-bootstrap/Nav';
 import { useState } from 'react';
 import Stack from 'react-bootstrap/Nav';
+import {
+  Trash3,
+  PencilSquare,
+  Icon2SquareFill,
+  Icon3SquareFill,
+  Icon1SquareFill,
+  SquareFill,
+} from 'react-bootstrap-icons';
 
 function TaskCard(props) {
   const [selected, setSelectVal] = useState('#first');
@@ -123,33 +131,75 @@ function TaskCard(props) {
         </Card.Body>
       )}
       <Stack direction="horizontal" gap={3} style={{ margin: '5px' }}>
-        <Button variant={bVariant} size="sm" style={{ marginRight: '5px' }}>
+        {/* <Button variant={bVariant} size="sm" style={{ marginRight: '5px' }}>
           Priority: {btext}
         </Button>
         <Button variant={sVariant} size="sm" style={{ marginRight: '5px' }}>
           Status: {stext}
-        </Button>
+        </Button> */}
+        <button
+          color="gray"
+          size="sm"
+          style={{ marginRight: '5px', border: '0px' }}
+        >
+          Priority:{' '}
+          {btext === 'Low' && <Icon1SquareFill color="gray" size={32} />}
+          {btext === 'Medium' && <Icon2SquareFill color="gray" size={32} />}
+          {btext === 'High' && <Icon3SquareFill color="gray" size={32} />}
+        </button>
+        <button
+          color="gray"
+          size="sm"
+          style={{ marginRight: '5px', border: '0px' }}
+        >
+          Status:{' '}
+          {stext === 'Pending' && <SquareFill color="orange" size={32} />}
+          {stext === 'Overdue' && <SquareFill color="red" size={32} />}
+          {stext === 'Completed' && <SquareFill color="green" size={32} />}
+        </button>
+
         {isOwner && (
           <div style={{ marginLeft: 'auto' }}>
-            <Button
-              variant="secondary"
-              size="sm"
-              style={{ marginRight: '5px' }}
+            <button
+              style={{ marginRight: '3px', border: '0px' }}
               onClick={props.btn1cb}
               idx={props.idx}
             >
-              Delete
-            </Button>
-            <Button
-              variant="secondary"
-              size="sm"
-              style={{ marginRight: '5px' }}
+              <Trash3
+                onClick={props.btn2cb}
+                idx={props.idx}
+                color="gray"
+                size={32}
+              />
+            </button>
+            <button
+              style={{ marginRight: '3px', border: '0px' }}
               onClick={props.btn2cb}
               idx={props.idx}
             >
-              Update
-            </Button>
+              <PencilSquare color="gray" size={32} />
+            </button>
           </div>
+          // <div style={{ marginLeft: 'auto' }}>
+          //   <Button
+          //     variant="secondary"
+          //     size="sm"
+          //     style={{ marginRight: '5px' }}
+          //     onClick={props.btn1cb}
+          //     idx={props.idx}
+          //   >
+          //     Delete
+          //   </Button>
+          //   <Button
+          //     variant="secondary"
+          //     size="sm"
+          //     style={{ marginRight: '5px' }}
+          //     onClick={props.btn2cb}
+          //     idx={props.idx}
+          //   >
+          //     Update
+          //   </Button>
+          // </div>
         )}
       </Stack>
     </Card>

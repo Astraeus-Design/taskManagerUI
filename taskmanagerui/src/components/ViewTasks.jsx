@@ -13,6 +13,9 @@ function ViewTasks(props) {
   const [tasklist, setTasksArray] = useState([]);
   const [refreshCards, setRefresh] = useState(true);
   const [validData, setValidData] = useState(false);
+  const [timerID, saveID] = useState(0);
+  const [firsttime, setflag] = useState(true);
+
   let countVal;
 
   // useEffect for getting products
@@ -46,7 +49,23 @@ function ViewTasks(props) {
       //setCallApi(false);
     }
 
-    if (refreshCards) getTasks();
+    if (refreshCards) {
+      getTasks();
+    }
+
+    // return () => {
+    //   console.log('in return');
+    //   if (firsttime) {
+    //     const myTimer = setInterval(() => {
+    //       setRefresh(true);
+    //       console.log('tick');
+    //     }, 10000);
+    //     saveID(myTimer);
+    //     setflag(false);
+    //   } else {
+    //     clearInterval(timerID);
+    //   }
+    // };
   });
 
   // useEffect for post to keep independent from apiproduct acquisition
@@ -173,8 +192,8 @@ assignedUser: 'me',*/
     );
   } else {
     return (
-      <div style={{ margin: '50px auto 0 auto' }}>
-        <h1>No tasks to view</h1>
+      <div style={{ margin: '50px auto 0 auto', textAlign: 'center' }}>
+        <h3>Loading......</h3>
       </div>
     );
   }
